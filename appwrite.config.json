@@ -1,0 +1,312 @@
+{
+    "projectId": "68925fcc0003ccc92952",
+    "endpoint": "https://nyc.cloud.appwrite.io/v1",
+    "projectName": "NIR Scans",
+    "settings": {
+        "services": {
+            "account": true,
+            "avatars": true,
+            "databases": true,
+            "locale": true,
+            "health": true,
+            "storage": true,
+            "teams": true,
+            "users": true,
+            "sites": true,
+            "functions": true,
+            "graphql": true,
+            "messaging": true
+        },
+        "auth": {
+            "methods": {
+                "jwt": true,
+                "phone": true,
+                "invites": true,
+                "anonymous": true,
+                "email-otp": true,
+                "magic-url": true,
+                "email-password": true
+            },
+            "security": {
+                "duration": 31536000,
+                "limit": 0,
+                "sessionsLimit": 10,
+                "passwordHistory": 0,
+                "passwordDictionary": false,
+                "personalDataCheck": false,
+                "sessionAlerts": false,
+                "mockNumbers": []
+            }
+        }
+    },
+    "databases": [
+        {
+            "$id": "689261e7001977746c1f",
+            "name": "NIR Scans Db",
+            "enabled": true
+        }
+    ],
+    "collections": [
+        {
+            "$id": "users",
+            "$permissions": [
+                "create(\"any\")",
+                "read(\"any\")",
+                "update(\"any\")",
+                "delete(\"any\")"
+            ],
+            "databaseId": "689261e7001977746c1f",
+            "name": "Users",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "id",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 20,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "scanners",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "scanners",
+                    "relationType": "manyToMany",
+                    "twoWay": true,
+                    "twoWayKey": "users",
+                    "onDelete": "setNull",
+                    "side": "parent"
+                },
+                {
+                    "key": "fields",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "fields",
+                    "relationType": "oneToMany",
+                    "twoWay": false,
+                    "twoWayKey": "68989f2c002d301e61b1",
+                    "onDelete": "cascade",
+                    "side": "parent"
+                },
+                {
+                    "key": "plants",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "plants",
+                    "relationType": "oneToMany",
+                    "twoWay": false,
+                    "twoWayKey": "68989f430016e8639f34",
+                    "onDelete": "cascade",
+                    "side": "parent"
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "scanners",
+            "$permissions": [
+                "create(\"any\")",
+                "read(\"any\")",
+                "update(\"any\")",
+                "delete(\"any\")"
+            ],
+            "databaseId": "689261e7001977746c1f",
+            "name": "Scanners",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "users",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "users",
+                    "relationType": "manyToMany",
+                    "twoWay": true,
+                    "twoWayKey": "scanners",
+                    "onDelete": "setNull",
+                    "side": "child"
+                },
+                {
+                    "key": "samples",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "samples",
+                    "relationType": "oneToMany",
+                    "twoWay": false,
+                    "twoWayKey": "68989f650038a34043e5",
+                    "onDelete": "cascade",
+                    "side": "parent"
+                },
+                {
+                    "key": "id",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 10,
+                    "default": null,
+                    "encrypt": false
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "samples",
+            "$permissions": [],
+            "databaseId": "689261e7001977746c1f",
+            "name": "Samples",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "modelResult",
+                    "type": "double",
+                    "required": true,
+                    "array": false,
+                    "min": -1.7976931348623157e+308,
+                    "max": 1.7976931348623157e+308,
+                    "default": null
+                },
+                {
+                    "key": "timestamp",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 29,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "measurementIds",
+                    "type": "integer",
+                    "required": false,
+                    "array": true,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "id",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 36,
+                    "default": null,
+                    "encrypt": false
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "fields",
+            "$permissions": [],
+            "databaseId": "689261e7001977746c1f",
+            "name": "Fields",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "required": true,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 100,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "plants",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "plants",
+                    "relationType": "manyToMany",
+                    "twoWay": false,
+                    "twoWayKey": "6898a45c0004a8a4026a",
+                    "onDelete": "setNull",
+                    "side": "parent"
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "plants",
+            "$permissions": [],
+            "databaseId": "689261e7001977746c1f",
+            "name": "Plants",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "required": true,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 100,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "samples",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "samples",
+                    "relationType": "manyToMany",
+                    "twoWay": false,
+                    "twoWayKey": "6898a4ba000ed0d535a0",
+                    "onDelete": "setNull",
+                    "side": "parent"
+                }
+            ],
+            "indexes": []
+        }
+    ],
+    "functions": [
+        {
+            "$id": "nir-scans-api",
+            "name": "NIR Scans API",
+            "runtime": "python-3.12",
+            "specification": "s-0.5vcpu-512mb",
+            "execute": [
+                "any"
+            ],
+            "events": [],
+            "scopes": [
+                "users.read"
+            ],
+            "schedule": "",
+            "timeout": 15,
+            "enabled": true,
+            "logging": true,
+            "entrypoint": "src/main.py",
+            "commands": "pip install -r requirements.txt",
+            "path": "functions/NIR Scans API"
+        }
+    ]
+}
