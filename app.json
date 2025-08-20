@@ -4,7 +4,7 @@
     "slug": "nir-scans",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/corn.jpg",
     "scheme": "nirscans",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,

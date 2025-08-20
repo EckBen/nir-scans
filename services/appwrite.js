@@ -6,7 +6,9 @@ const config = {
   projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID,
   db: process.env.EXPO_PUBLIC_APPWRITE_DB_ID,
   col: {
-    notes: process.env.EXPO_PUBLIC_APPWRITE_COL_NOTES_ID
+    users: process.env.EXPO_PUBLIC_APPWRITE_COL_USERS_ID,
+    scanners: process.env.EXPO_PUBLIC_APPWRITE_COL_SCANNERS_ID,
+    samples: process.env.EXPO_PUBLIC_APPWRITE_COL_SAMPLES_ID
   },
 };
 

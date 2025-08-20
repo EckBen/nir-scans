@@ -1,39 +1,51 @@
 import { ID } from "react-native-appwrite";
 import { account } from "./appwrite";
 
+import asyncWithTimeout from "../utils/serviceHelpers";
+
 const authService = {
   // Register a user
   async register(email, password) {
-    try {
-      const response = await account.create(ID.unique(), email, password);
-      return response;
-    } catch (error) {
-      return { error: error.message || 'Registration failed. Please try again' }
-    }
+    return await asyncWithTimeout(
+      account.create(ID.unique(), email, password),
+      undefined,
+      'Registration failed. Please try again'
+    );
   },
   // Login
   async login(email, password) {
-    try {
-      const response = await account.createEmailPasswordSession(email, password);
-      return response;
-    } catch (error) {
-      return { error: error.message || 'Login failed. Please check your credentials' }
-    }
+    return await asyncWithTimeout(
+      account.createEmailPasswordSession(email, password),
+      undefined,
+      'Login failed. Please check your credentials'
+    );
   },
   // Get logged in user
   async getUser() {
-    try {
-      return await account.get();
-    } catch {
-      return null;
-    }
+    return await asyncWithTimeout(
+      account.get(),
+      undefined,
+      'Failed to get user information. Please try again'
+    );
   },
   // Logout
   async logout() {
+    await asyncWithTimeout(
+      account.deleteSession('current'),
+      undefined,
+      'Logout failed. Please try again'
+    );
+  },
+  // Create a JWT
+  async createJwt() {
     try {
-      await account.deleteSession('current');
+      const response = await asyncWithTimeout(account.createJWT());
+      if (response.error) {
+        throw new Error(response.error);
+      }
     } catch (error) {
-      return { error: error.message || 'Logout failed. Please try again' }
+      console.error(error);
+      return null;
     }
   }
 };
