@@ -298,7 +298,10 @@
             ],
             "events": [],
             "scopes": [
-                "users.read"
+                "rows.read",
+                "documents.read",
+                "rows.write",
+                "documents.write"
             ],
             "schedule": "",
             "timeout": 15,
