@@ -2,13 +2,18 @@ import { Platform } from "react-native";
 import { Account, Client, Databases, Functions } from "react-native-appwrite";
 
 const config = {
+  stub: true,
+  stubPause: 2000,
   endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT,
   projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID,
-  db: process.env.EXPO_PUBLIC_APPWRITE_DB_ID,
-  col: {
-    users: process.env.EXPO_PUBLIC_APPWRITE_COL_USERS_ID,
-    scanners: process.env.EXPO_PUBLIC_APPWRITE_COL_SCANNERS_ID,
-    samples: process.env.EXPO_PUBLIC_APPWRITE_COL_SAMPLES_ID
+  functionId: process.env.EXPO_PUBLIC_APPWRITE_FUNCTION_ID,
+  dbId: process.env.EXPO_PUBLIC_APPWRITE_DB_ID,
+  collIds: {
+    users: process.env.EXPO_PUBLIC_APPWRITE_COL_USERS,
+    scanners: process.env.EXPO_PUBLIC_APPWRITE_COL_SCANNERS,
+    samples: process.env.EXPO_PUBLIC_APPWRITE_COL_SAMPLES,
+    fields: process.env.EXPO_PUBLIC_APPWRITE_COL_FIELDS,
+    plants: process.env.EXPO_PUBLIC_APPWRITE_COL_PLANTS
   },
 };
 

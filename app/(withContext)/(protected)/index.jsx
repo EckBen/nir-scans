@@ -1,7 +1,13 @@
 import { AppText } from "@/components/AppText";
 import { StyleSheet, View } from "react-native";
 
+import { useData } from '../../../contexts/dataContext';
+
 export default function HomeScreen() {
+  const { userData, scanners, fields, plants } = useData();
+
+  console.log(userData, scanners, fields, plants);
+
   return (
     <View style={styles.container}>
       <AppText size='heading' bold>Home</AppText>
